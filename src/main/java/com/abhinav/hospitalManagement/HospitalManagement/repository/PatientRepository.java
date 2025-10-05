@@ -70,6 +70,6 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
 
 
     //example for Pagination
-    @Query(value = "SELECT * FROM patient_table",nativeQuery = true)
+    @Query(value = "SELECT * FROM patient",nativeQuery = true)
     Page<Patient> findAllPatients(Pageable pageable);
 }

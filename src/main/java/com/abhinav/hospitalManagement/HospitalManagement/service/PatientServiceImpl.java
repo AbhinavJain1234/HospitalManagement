@@ -1,15 +1,14 @@
-package com.abhinav.hospitalManagement.HospitalManagement.service.impl;
+package com.abhinav.hospitalManagement.HospitalManagement.service;
 
 import com.abhinav.hospitalManagement.HospitalManagement.entity.Patient;
 import com.abhinav.hospitalManagement.HospitalManagement.repository.PatientRepository;
-import com.abhinav.hospitalManagement.HospitalManagement.service.PatientService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PatientServiceImpl implements PatientService {
+public class PatientServiceImpl {
     private final PatientRepository patientRepository;
 
     public Patient findPatientById(Long Id){
