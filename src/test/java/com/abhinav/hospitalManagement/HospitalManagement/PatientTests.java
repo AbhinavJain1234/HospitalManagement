@@ -1,5 +1,6 @@
 package com.abhinav.hospitalManagement.HospitalManagement;
 
+import com.abhinav.hospitalManagement.HospitalManagement.dto.BloodGroupCountResponseEntity;
 import com.abhinav.hospitalManagement.HospitalManagement.entity.Patient;
 import com.abhinav.hospitalManagement.HospitalManagement.entity.type.BloodGroupType;
 import com.abhinav.hospitalManagement.HospitalManagement.repository.PatientRepository;
@@ -49,9 +50,9 @@ public class PatientTests {
         patients=patientRepository.findByBornAfterDate(LocalDate.of(1992,3,8));
         for(Patient p:patients) System.out.println(p);
 
-        System.out.println("------countEachBloodGroupType-------");
-        List<Object[]> ans=patientRepository.countEachBloodGroupType();
-        for(Object[] obj:ans) System.out.println(obj[0]+" "+obj[1]);
+//        System.out.println("------countEachBloodGroupType-------");
+//        List<Object[]> ans=patientRepository.countEachBloodGroupType();
+//        for(Object[] obj:ans) System.out.println(obj[0]+" "+obj[1]);
 
         System.out.println("------findAllPatients-------");
         patients=patientRepository.findAllPatients();
@@ -59,6 +60,10 @@ public class PatientTests {
 
         System.out.println("------Updating Patient-------");
         System.out.println(patientRepository.updateNameWithId(1L,"Abhinav Jain"));
+
+        System.out.println("------countEachBloodGroupType-------");
+        List<BloodGroupCountResponseEntity> ans=patientRepository.countEachBloodGroupType();
+        for(BloodGroupCountResponseEntity obj:ans) System.out.println(obj);
 
     }
 }
