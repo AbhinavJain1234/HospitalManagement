@@ -4,6 +4,8 @@ import com.abhinav.hospitalManagement.HospitalManagement.dto.BloodGroupCountResp
 import com.abhinav.hospitalManagement.HospitalManagement.entity.Patient;
 import com.abhinav.hospitalManagement.HospitalManagement.entity.type.BloodGroupType;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -50,8 +52,8 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
 //    List<Object[]> countEachBloodGroupType();
 
     //Give sql query directly use table name
-    @Query(value = "SELECT * FROM patient_table",nativeQuery = true)
-    List<Patient> findAllPatients();
+//    @Query(value = "SELECT * FROM patient_table",nativeQuery = true)
+//    List<Patient> findAllPatients();
 
     //Update query
     // return no. of rows affected
@@ -65,4 +67,9 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     //cant do project in native query
     @Query("SELECT new com.abhinav.hospitalManagement.HospitalManagement.dto.BloodGroupCountResponseEntity(p.bloodGroup, COUNT(p.id)) FROM Patient p GROUP BY p.bloodGroup")
     List<BloodGroupCountResponseEntity> countEachBloodGroupType();
+
+
+    //example for Pagination
+    @Query(value = "SELECT * FROM patient_table",nativeQuery = true)
+    Page<Patient> findAllPatients(Pageable pageable);
 }

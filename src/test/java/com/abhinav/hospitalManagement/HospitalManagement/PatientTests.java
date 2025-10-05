@@ -5,10 +5,12 @@ import com.abhinav.hospitalManagement.HospitalManagement.entity.Patient;
 import com.abhinav.hospitalManagement.HospitalManagement.entity.type.BloodGroupType;
 import com.abhinav.hospitalManagement.HospitalManagement.repository.PatientRepository;
 import com.abhinav.hospitalManagement.HospitalManagement.service.impl.PatientServiceImpl;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -54,9 +56,9 @@ public class PatientTests {
 //        List<Object[]> ans=patientRepository.countEachBloodGroupType();
 //        for(Object[] obj:ans) System.out.println(obj[0]+" "+obj[1]);
 
-        System.out.println("------findAllPatients-------");
-        patients=patientRepository.findAllPatients();
-        for(Patient p:patients) System.out.println(p);
+//        System.out.println("------findAllPatients-------");
+//        patients=patientRepository.findAllPatients();
+//        for(Patient p:patients) System.out.println(p);
 
         System.out.println("------Updating Patient-------");
         System.out.println(patientRepository.updateNameWithId(1L,"Abhinav Jain"));
@@ -64,6 +66,11 @@ public class PatientTests {
         System.out.println("------countEachBloodGroupType-------");
         List<BloodGroupCountResponseEntity> ans=patientRepository.countEachBloodGroupType();
         for(BloodGroupCountResponseEntity obj:ans) System.out.println(obj);
+
+
+        System.out.println("------findAllPatients-------");
+        Page<Patient> page=patientRepository.findAllPatients(PageRequest.of(0,2, Sort.by("name").descending()));
+        for(Patient p:page) System.out.println(p);
 
     }
 }
